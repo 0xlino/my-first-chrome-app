@@ -5,8 +5,6 @@ import './popup.css';
 (function () {
   function setupButton() {
     document.getElementById('bensBtn').addEventListener('click', () => {
-      console.log('button smashin222');
-
       chrome.runtime.sendMessage(
         {
           type: 'NEW_TAB',
@@ -16,7 +14,6 @@ import './popup.css';
           },
         },
         (response) => {
-          console.log("logging as well");
           console.log(response.message);
         }
       );
