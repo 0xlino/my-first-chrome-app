@@ -1,0 +1,1 @@
+(()=>{"use strict";chrome.runtime.onMessage.addListener((async(e,t,a)=>{"NEW_TAB"===e.type&&(await chrome.tabs.create({url:"https://github.com/new/import"}),a({message:"new tab created"}))}))})();
