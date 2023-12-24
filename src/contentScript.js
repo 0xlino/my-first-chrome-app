@@ -17,7 +17,7 @@ navigator.clipboard.readText().then((clipText) => {
   // // console.log(clipText);
   clipTextString = clipText;
 
-  var radioButton = document.getElementById(':r7:');
+  var radioButton = document.getElementById(':r8:');
   radioButton.click();
   radioButton.checked = true;
 
@@ -32,10 +32,24 @@ navigator.clipboard.readText().then((clipText) => {
   var inputEvent = new Event('input', { bubbles: true });
   inputElement.dispatchEvent(inputEvent);
 
-  var reponame = document.getElementById(':r4:');
+  var reponame = document.getElementById(':r5:');
   reponame.value = repoNameString;
 
   var repoNameEvent = new Event('input', { bubbles: true });
   reponame.dispatchEvent(repoNameEvent);
+
+  var submitButton = document.querySelector('.types__StyledButton-sc-ws60qy-0[type="submit"]');
+
+  // Check if the submit button is found
+  if (submitButton) {
+    // wait 1 second before clicking the submit button
+    setTimeout(() => {
+      // click the submit button
+      console.log('clicking submit button');
+      submitButton.click();
+    }, 1000);
+  } else {
+    console.error('Submit button not found!');
+  }
 })
 

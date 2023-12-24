@@ -1,1 +1,65 @@
-(()=>{"use strict";let e="";navigator.clipboard.readText().then((t=>{if(!t.includes("github.com"))return void alert("Not a github url");t.includes("/tree/main")&&(t=t.split("/tree/main")[0]),e=t;var n=document.getElementById(":r7:");n.click(),n.checked=!0;var i=document.getElementById(":r1:");i.value=e;const r=e.split("/").pop();var a=new Event("input",{bubbles:!0});i.dispatchEvent(a);var l=document.getElementById(":r4:");l.value=r;var u=new Event("input",{bubbles:!0});l.dispatchEvent(u)}))})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+/*!******************************!*\
+  !*** ./src/contentScript.js ***!
+  \******************************/
+
+
+// get clipboard data
+let clipTextString = '';
+navigator.clipboard.readText().then((clipText) => {
+  // if it's not a github url, return alert()
+  if (!clipText.includes('github.com')) {
+    alert('Not a github url');
+    return;
+  }
+
+  // if the clipboard url is like https://github.com/findify/findify-liquid-components/tree/main remove the /tree/main
+  if (clipText.includes('/tree/main')) {
+    clipText = clipText.split('/tree/main')[0];
+  }
+
+  // // console.log(clipText);
+  clipTextString = clipText;
+
+  var radioButton = document.getElementById(':r8:');
+  radioButton.click();
+  radioButton.checked = true;
+
+  var inputElement = document.getElementById(':r1:');
+
+  // Set the value of the input field
+  inputElement.value = clipTextString;
+
+  // https://github.com/WTNO/Evm_Js_Learning
+  const repoNameString = clipTextString.split("/").pop();
+
+  var inputEvent = new Event('input', { bubbles: true });
+  inputElement.dispatchEvent(inputEvent);
+
+  var reponame = document.getElementById(':r5:');
+  reponame.value = repoNameString;
+
+  var repoNameEvent = new Event('input', { bubbles: true });
+  reponame.dispatchEvent(repoNameEvent);
+
+  var submitButton = document.querySelector('.types__StyledButton-sc-ws60qy-0[type="submit"]');
+
+  // Check if the submit button is found
+  if (submitButton) {
+    // wait 1 second before clicking the submit button
+    setTimeout(() => {
+      // click the submit button
+      console.log('clicking submit button');
+      submitButton.click();
+    }, 1000);
+  } else {
+    console.error('Submit button not found!');
+  }
+})
+
+
+/******/ })()
+;
+//# sourceMappingURL=contentScript.js.map
